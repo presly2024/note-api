@@ -8,7 +8,10 @@ const connectDB = async () => {
      }
      try {
           const connecting = await mongoose.connect(
-               "mongodb://localhost:27017/note"
+               "mongodb+srv://preslytakopnfor:YDCnxPW48iSVkgoK@internship.5nayx.mongodb.net/",
+               {
+                    dbName: "notes",
+               }
           );
           cachedConnection = connecting.connection;
           console.log("Using new connection");
