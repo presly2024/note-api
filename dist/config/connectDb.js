@@ -13,17 +13,20 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importDefault(require("mongoose"));
+const dotenv_1 = __importDefault(require("dotenv"));
+dotenv_1.default.config();
 let cachedConnection = null;
 const { NODE_ENV, MONGODB_URI } = process.env;
+const url = String(NODE_ENV) === "development"
+    ? "mongodb://localhost:27017/"
+    : MONGODB_URI;
 const connectDB = () => __awaiter(void 0, void 0, void 0, function* () {
     if (cachedConnection) {
         console.log("Using cached connection");
         return cachedConnection;
     }
     try {
-        const connecting = yield mongoose_1.default.connect(String(NODE_ENV) === "development"
-            ? "mongodb://localhost:27017/"
-            : MONGODB_URI, {
+        const connecting = yield mongoose_1.default.connect(url, {
             dbName: "notes",
         });
         cachedConnection = connecting.connection;
