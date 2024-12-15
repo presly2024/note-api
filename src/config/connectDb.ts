@@ -8,7 +8,7 @@ const connectDB = async () => {
      }
      try {
           const connecting = await mongoose.connect(
-               "mongodb+srv://preslytakopnfor:YDCnxPW48iSVkgoK@internship.5nayx.mongodb.net/",
+               "mongodb://localhost:27017/",
                {
                     dbName: "notes",
                }
@@ -17,6 +17,7 @@ const connectDB = async () => {
           console.log("Using new connection");
           return cachedConnection;
      } catch (error) {
+          console.log("Failed to connect to database");
           throw new Error("Failed to connect");
      }
 };
