@@ -115,3 +115,13 @@ router.patch("/pin/:id", authMiddleWare_1.auth, (req, res) => __awaiter(void 0, 
         });
     }
 }));
+router.get("/all", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const notes = yield notes_1.default.find();
+        res.status(200).json(notes);
+    }
+    catch (error) {
+        console.log(error);
+        return res.status(500).json({ msg: "Internal server error" });
+    }
+}));

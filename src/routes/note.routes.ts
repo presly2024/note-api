@@ -109,4 +109,14 @@ router.patch("/pin/:id", auth, async (req: Request | any, res: Response) => {
      }
 });
 
+router.get("/all", async (req, res) => {
+     try {
+          const notes = await Note.find();
+          res.status(200).json(notes);
+     } catch (error) {
+          console.log(error);
+          return res.status(500).json({ msg: "Internal server error" });
+     }
+});
+
 export { router as noteRouter };

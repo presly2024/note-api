@@ -17,4 +17,7 @@ app.use(express_1.default.json());
 app.use((0, cors_1.default)());
 app.use("/user", user_routes_1.userRoutes);
 app.use("/note", note_routes_1.noteRouter);
+app.get("/", (req, res) => {
+    res.send("Welcome to my api");
+});
 app.listen(PORT, () => console.log("server running"));

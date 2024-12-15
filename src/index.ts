@@ -14,4 +14,8 @@ app.use(cors());
 app.use("/user", userRoutes);
 app.use("/note", noteRouter);
 
+app.get("/", (req, res) => {
+     res.send("Welcome to my api");
+});
+
 app.listen(PORT, () => console.log("server running"));

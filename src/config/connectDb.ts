@@ -1,6 +1,9 @@
 import mongoose, { Connection } from "mongoose";
 
 let cachedConnection: Connection | null = null;
+
+const { NODE_ENV, MONGODB_URI } = process.env;
+
 const connectDB = async () => {
      if (cachedConnection) {
           console.log("Using cached connection");
@@ -8,7 +11,9 @@ const connectDB = async () => {
      }
      try {
           const connecting = await mongoose.connect(
-               "mongodb://localhost:27017/",
+               String(NODE_ENV) === "development"
+                    ? "mongodb://localhost:27017/"
+                    : (MONGODB_URI as string),
                {
                     dbName: "notes",
                }
